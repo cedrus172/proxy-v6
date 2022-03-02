@@ -8,7 +8,7 @@ Redirect connections from different ports at one ipv4 address to unique random i
 ## Installation
 1 . Select a command line and run
  - 1 `bash <(curl -s "https://raw.githubusercontent.com/cedrus172/proxy-v6/main/install.sh")` auth ip
- - 2 `bash <(curl -s "https://raw.githubusercontent.com/cedrus172/proxy-v6/main/install-ath.sh")` auth user, pass
+ - 2 `bash <(curl -s "https://raw.githubusercontent.com/cedrus172/proxy-v6/main/install-auth.sh")` auth user, pass
 
 2. After installation dowload the file `proxy.zip`
    - File structure: `IP4:PORT:LOGIN:PASS`
