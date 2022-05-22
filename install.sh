@@ -61,6 +61,23 @@ upload_proxy() {
     echo "Password: ${PASS}"
 
 }
+
+install_jq() {
+  wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+  chmod +x ./jq
+  cp jq /usr/bin
+}
+
+upload_2file() {
+  local PASS=$(random)
+  zip --password $PASS proxy.zip proxy.txt
+  JSON=$(curl -F "file=@proxy.zip" https://file.io)
+  URL=$(echo "$JSON" | jq --raw-output '.link')
+
+  echo "Proxy is ready! Format IP:PORT:LOGIN:PASS"
+  echo "Download zip archive from: ${URL}"
+  echo "Password: ${PASS}"
+}
 gen_data() {
     seq $FIRST_PORT $LAST_PORT | while read port; do
         echo "usr$(random)/pass$(random)/$IP4/$port/$(gen64 $IP6)"
@@ -117,4 +134,6 @@ bash /etc/rc.local
 
 gen_proxy_file_for_user
 
-upload_proxy
+install_jq && upload_2file
+
+#upload_proxy
